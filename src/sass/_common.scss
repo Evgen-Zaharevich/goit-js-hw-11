@@ -1,11 +1,6 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 
-.gallery__link {
-  display: block;
-  text-decoration: none;
-  height: 100%;
-}
-
-.gallery__link:hover {
-  cursor: zoom-in;
+body {
+  background-image: url(../images/background39.png);
+  font-family: 'Montserrat', sans-serif;
 }

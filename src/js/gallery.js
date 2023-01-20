@@ -6,11 +6,11 @@ const formRef = document.querySelector(`.search-form`);
 const galleryRef = document.querySelector(`.gallery`);
 const loadMoreBtnRef = document.querySelector(`.load-more`, onLoadMore);
 
-let currentPage = 1;
-
 formRef.addEventListener(`submit`, onDeleteMarkup);
 formRef.addEventListener(`submit`, onSearch);
 loadMoreBtnRef.addEventListener(`click`, onLoadMore);
+
+let currentPage = 1;
 
 async function onSearch(e) {
   e.preventDefault();
@@ -47,9 +47,9 @@ function onCreateMarkupForCardImage(response) {
       comments,
       downloads,
     }) => {
-      return `<div class="photo-card">
+      return `<div class="gallery__item">
         <a class="gallery__link" href="${largeImageURL}">
-        <img src="${webformatURL}" alt="${tags}" loading="lazy" />
+        <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
         </a
         <div class="info">
           <p class="info-item">
@@ -63,10 +63,8 @@ function onCreateMarkupForCardImage(response) {
           </p>
           <p class="info-item">
             <b>Downloads</b>${downloads}
-          </p>
-        </div>
-      </div>
-      `;
+          </p></div>
+          </div>/`;
     }
   );
 }
@@ -123,14 +121,3 @@ async function onLoadMore(e) {
 function onAddCardsForPressLoadMoreBtn(markup) {
   return galleryRef.insertAdjacentHTML('beforeend', markup);
 }
-
-// function onScroll() {
-//   const { height: cardHeight } = document
-//     .querySelector('.gallery')
-//     .firstElementChild.getBoundingClientRect();
-
-//   window.scrollBy({
-//     top: cardHeight * 2,
-//     behavior: 'smooth',
-//   });
-// }
