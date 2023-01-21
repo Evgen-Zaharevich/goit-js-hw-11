@@ -5,32 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./sass/index.scss" />
-    <title>Homework 11</title>
+    <title>Gallery</title>
   </head>
   <body>
     <header>
-      <form class="search-form" id="search-form">
-        <input
-          class="search-form__input"
-          type="text"
-          name="searchQuery"
-          autocomplete="off"
-          placeholder="Search images..."
-        />
-        <button class="button" type="submit">Search</button>
-      </form>
+      <include src="./partials/header.html"></include>
     </header>
 
-    <div class="gallery">
-      <!-- image cards -->
-    </div>
-    <button type="button" class="button load-more visually-hidden" disabled>
-      Load more
-    </button>
+    <main>
+      <include src="./partials/main.html"></include>
+    </main>
 
-    <button type="button" class="button button-up visually-hidden">
-      To up
-    </button>
+    <footer>
+      <include src="./partials/footer.html"></include>
+    </footer>
 
     <script src="index.js" type="module"></script>
   </body>
