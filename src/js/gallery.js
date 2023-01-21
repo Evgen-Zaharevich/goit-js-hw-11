@@ -1,10 +1,11 @@
-import { fetchImages, PER_PAGE } from './API';
+import { fetchImages } from './API';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { lightbox } from './lightbox';
 
 const formRef = document.querySelector(`.search-form`);
 const galleryRef = document.querySelector(`.gallery`);
 const loadMoreBtnRef = document.querySelector(`.load-more`, onLoadMore);
+const buttonUpRef = document.querySelector(`.button-up`);
 
 formRef.addEventListener(`submit`, onDeleteMarkup);
 formRef.addEventListener(`submit`, onSearch);
@@ -37,36 +38,41 @@ async function onSearch(e) {
 
 function onCreateMarkupForCardImage(response) {
   const { hits } = response.data;
-  return hits.map(
-    ({
-      webformatURL,
-      largeImageURL,
-      tags,
-      likes,
-      views,
-      comments,
-      downloads,
-    }) => {
-      return `<div class="gallery__item">
-        <a class="gallery__link" href="${largeImageURL}">
+  return hits
+    .map(
+      ({
+        webformatURL,
+        largeImageURL,
+        tags,
+        likes,
+        views,
+        comments,
+        downloads,
+      }) => {
+        return `<div class="gallery__item">
+      <a class="gallery__link" href="${largeImageURL}">
         <img class="gallery__image" src="${webformatURL}" alt="${tags}" loading="lazy" />
-        </a
-        <div class="info">
-          <p class="info-item">
-            <b>Likes</b>${likes}
-          </p>
-          <p class="info-item">
-            <b>Views</b>${views}
-          </p>
-          <p class="info-item">
-            <b>Comments</b>${comments}
-          </p>
-          <p class="info-item">
-            <b>Downloads</b>${downloads}
-          </p></div>
-          </div>/`;
-    }
-  );
+      </a
+      <div>
+      <div class="info">
+        <p class="info-item">
+         <b>Likes </b>${likes}
+        </p> 
+        <p class="info-item">
+          <b>Views </b>${views}
+        </p>
+        <p class="info-item">
+          <b>Comments </b>${comments}
+        </p>
+        <p class="info-item">
+          <b>Downloads </b>${downloads}
+        </p>
+        </div>  
+      </div>
+    </div>`;
+      }
+    )
+    .join(``);
 }
 
 function onAddMarkupOnDOM(markup) {
@@ -81,11 +87,15 @@ function onDeleteMarkup() {
 function hiddenBtn() {
   loadMoreBtnRef.classList.add('visually-hidden');
   loadMoreBtnRef.setAttribute('disabled', '');
+  buttonUpRef.classList.add('visually-hidden');
+  buttonUpRef.setAttribute('disabled', '');
 }
 
 function showBtn() {
   loadMoreBtnRef.removeAttribute('disabled');
   loadMoreBtnRef.classList.remove('visually-hidden');
+  buttonUpRef.removeAttribute('disabled');
+  buttonUpRef.classList.remove('visually-hidden');
 }
 
 function onShowNotificationForHitsValue(response) {
