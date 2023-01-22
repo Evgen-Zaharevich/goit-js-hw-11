@@ -1,4 +1,4 @@
-import './js/api';
+import './js/API';
 import './js/gallery';
 import './js/lightbox';
 import './js/backOnTopButton';

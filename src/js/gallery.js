@@ -1,4 +1,4 @@
-import { fetchImages } from './api';
+import { fetchImages } from './API';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { lightbox } from './lightbox';
 import { onBackOnTopButton } from './backOnTopButton';
@@ -24,6 +24,8 @@ async function onSearch(e) {
   const { searchQuery } = e.target;
 
   if (!searchQuery.value) {
+    hiddenBtn();
+
     Notify.info(
       `Sorry, there are no images matching your search query. Please try again.`
     );

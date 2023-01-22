@@ -1,4 +1,5 @@
 import { galleryRef } from './refs';
+import { hiddenBtn } from './utils';
 
 export {
   onCreateMarkupForCardImage,
